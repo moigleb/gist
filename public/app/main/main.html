@@ -1,0 +1,82 @@
+<!-- Content -->
+<div class="organization-container pt-4">
+    <h1 class="title text-center text-capitalize p-2">{{organization}}</h1>
+
+    <table class="table table-hover table-bordered" ng-if="!errorPage">
+        <thead>
+        <tr>
+            <th ng-click="sortByType('login')" class="rounded-top">
+                <span>Name</span>
+                <div ng-if="sortConfig.type === 'login'"
+                     class="float-right pr-1"
+                >
+                    {{sortConfig.revert ? '&#8659;' : '&#8657;'}}
+                </div>
+            </th>
+
+            <th ng-click="sortByType('contributions')">
+                <span>Contributions</span>
+                <div ng-if="sortConfig.type === 'contributions'"
+                     class="float-right pr-1"
+                >
+                    {{sortConfig.revert ? '&#8659;' : '&#8657;'}}
+                </div>
+            </th>
+
+            <th ng-click="sortByType('public_repos')">
+                <span>Repositories</span>
+                <div ng-if="sortConfig.type === 'public_repos'"
+                     class="float-right pr-1"
+                >
+                    {{sortConfig.revert ? '&#8659;' : '&#8657;'}}
+                </div>
+            </th>
+
+            <th ng-click="sortByType('public_gists')">
+                <span>Gists</span>
+                <div ng-if="sortConfig.type === 'public_gists'"
+                     class="float-right pr-1"
+                >
+                    {{sortConfig.revert ? '&#8659;' : '&#8657;'}}
+                </div>
+            </th>
+
+            <th ng-click="sortByType('followers')">
+                <span>Followers</span>
+                <div ng-if="sortConfig.type === 'followers'"
+                     class="float-right pr-1"
+                >
+                    {{sortConfig.revert ? '&#8659;' : '&#8657;'}}
+                </div>
+            </th>
+        </tr>
+        </thead>
+
+        <!-- Loader -->
+        <tbody ng-if="!currentUsers" class="rounded-bottom">
+        <tr>
+            <td colspan="5" class="text-center">
+                <span class="loader text-danger">&#10070;</span>
+            </td>
+        </tr>
+        </tbody>
+        <!-- Information -->
+        <tbody ng-if="currentUsers">
+            <tr ng-repeat="user in currentUsers">
+                <td>
+                    <a ng-href="#!/contributor/{{user['login']}}" ng-bind="user['login']"></a>
+                </td>
+                <td ng-bind="user['contributions']"></td>
+                <td ng-bind="user['public_repos']"></td>
+                <td ng-bind="user['public_gists']"></td>
+                <td ng-bind="user['followers']"></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- Pagination -->
+    <pagination ng-if="paging.total > 1" pages="paging" on-set-page="setPage(start, end)"></pagination>
+
+    <!-- Error -->
+    <h3 ng-if="errorPage" class="bg-danger text-light rounded text-center p-4 my-5">{{errorPage}}</h3>
+</div>

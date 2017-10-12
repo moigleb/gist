@@ -1,0 +1,47 @@
+<nav class="pagination-component d-flex justify-content-center py-2 my-3"
+     ng-if="paging.total > 1"
+>
+    <ul class="pagination">
+        <li class="page-item" ng-click="setPage(paging.page - 1)">
+            <span class="page-link">Prev</span>
+        </li>
+        <li class="page-item" ng-if="paging.page > 2" ng-click="setPage(1)">
+            <span class="page-link">1</span>
+        </li>
+
+        <li class="page-item disabled" ng-if="paging.page > 4">
+            <span class="page-link">...</span>
+        </li>
+
+        <li class="page-item" ng-if="paging.page === 4" ng-click="setPage(3)">
+            <span class="page-link">2</span>
+        </li>
+
+        <li class="page-item" ng-if="paging.page > 1" ng-click="setPage(paging.page - 1)">
+            <span class="page-link">{{ paging.page - 1 }}</span>
+        </li>
+
+        <li class="page-item active">
+            <span class="page-link">{{ paging.page }}</span>
+        </li>
+
+        <li class="page-item" ng-if="paging.page < paging.total" ng-click="setPage(paging.page + 1)">
+            <span class="page-link">{{ paging.page + 1 }}</span>
+        </li>
+        <li class="page-item" ng-if="paging.page + 3 === paging.total" ng-click="setPage(paging.page + 2)">
+            <span class="page-link">{{ paging.page + 2 }}</span>
+        </li>
+
+        <li class="page-item disabled" ng-if="paging.page + 3 < paging.total">
+            <span class="page-link">...</span>
+        </li>
+
+        <li class="page-item" ng-if="paging.page + 1 < paging.total" ng-click="setPage(paging.total)">
+            <span class="page-link">{{paging.total }}</span>
+        </li>
+
+        <li class="page-item" ng-click="setPage(paging.page + 1)">
+            <span class="page-link disabled">Next</span>
+        </li>
+    </ul>
+</nav>

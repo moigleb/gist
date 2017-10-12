@@ -1,0 +1,30 @@
+<!-- Loader -->
+<div ng-if="!errorPage && !user && !currentRepos" class="w-100 text-center loader text-danger">&#10070;</div>
+
+<!-- Content -->
+<div ng-if="!errorPage && user && currentRepos"
+     class="contributor-container pt-4"
+>
+    <div class="contributor-info">
+        <h1>{{user['login']}}</h1>
+        <p><a ng-href="{{user['html_url']}}">gitHub page</a></p>
+    </div>
+    <hr>
+    <h4 class="mb-3">Repositories:</h4>
+
+    <div class="list-group">
+        <a ng-href="#!/{{user['login']}}/{{repo['name']}}"
+           class="list-group-item list-group-item-action"
+           ng-repeat="repo in currentRepos"
+        >
+            <span class="w-100 mb-1 text-primary" ng-bind="repo['name']"></span>
+            <span class="text-secondary" ng-bind="repo['description']"></span>
+        </a>
+    </div>
+
+    <!-- Pagination -->
+    <pagination ng-if="paging.total > 1" pages="paging" on-set-page="setPage(start, end)"></pagination>
+</div>
+
+<!-- Error -->
+<h3 ng-if="errorPage" class="bg-danger text-light rounded text-center p-4 my-5">{{errorPage}}</h3>

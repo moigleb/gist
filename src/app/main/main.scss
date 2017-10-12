@@ -1,0 +1,34 @@
+.organization-container table {
+    thead tr {
+        > th {
+            cursor: pointer;
+        }
+
+        > th:first-child {
+            width: 40%;
+        }
+
+        > th:nth-child(n+2) {
+            width: 15%;
+        }
+    }
+    tr {
+        background-color: #fff;
+    }
+}
+
+.loader {
+    display: inline-block;
+    font-size: 2rem;
+    color: #ff3800;
+    animation: spinner 1s linear infinite;
+}
+
+@keyframes spinner {
+    from {
+        transform: rotateY(0);
+    }
+    to {
+        transform: rotateY(360deg);
+    }
+}
