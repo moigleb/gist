@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "npm install http-server && npm install && gulp build && http-server",
+    "npm start": "npm install http-server && npm install && gulp-build && http-server",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
